@@ -1,0 +1,100 @@
+<div class="card">
+  <div class="card-body">
+     <h3> Order Summary</h3>
+    <!-- Shopping Cart table -->
+    <div class="table-responsive">
+
+      <table class="table product-table">
+
+        <!-- Table head -->
+        <thead class="mdb-color lighten-5">
+          <tr>
+            <th class="font-weight-bold">
+              <strong>Product</strong>
+            </th>
+         
+            <th></th>
+            <th class="font-weight-bold">
+              <strong>Price</strong>
+            </th>
+            <th class="font-weight-bold">
+              <strong>QTY</strong>
+            </th>
+            <th class="font-weight-bold">
+              <strong>Amount</strong>
+            </th>
+            <th class="font-weight-bold">
+                <strong>Action</strong>
+              </th>
+            <th></th>
+          </tr>
+        </thead>
+        <!-- /.Table head -->
+
+        <!-- Table body -->
+        <tbody>
+
+          <!-- First row -->
+          <tr *ngFor="let item of ticketModifier" >
+            <td>
+              <h5>
+                <strong>{{item.Name}}</strong>
+                <div class="row mt-2">
+                  <span class = 'col-md-1 ml-1 mt-2' *ngFor = 'let modifier of item.selectedModifier'>
+                    <img [src] = 'modifier.Image'  [matTooltip]="modifier.Item"
+                    style = 'width : 30px ; height : 30px'   />
+                  </span>
+                </div>
+             
+              </h5>
+            </td>
+            <td></td>
+            <td>
+                <span>
+                             
+              {{item.Price |currency:'USD':true}}
+                </span>
+            </td>
+            <td>
+              {{item.Quantity}}
+            </td>
+            <td class="font-weight-bold">
+              <strong>{{(item.Price*item.Quantity) | number| currency:'USD':true}}</strong>
+            </td>
+            <td>
+                <i class="fa fa-plus-circle"  (click)="addItem(item)" style = 'color : #458911 ; cursor : pointer;'  aria-hidden="true"></i>&nbsp;&nbsp;
+                <i class="fa fa-minus-circle" (click)="subtractOne(item)" style = 'color : #c92a37 ; cursor : pointer;'  aria-hidden="true"></i>&nbsp;&nbsp;
+                <i class="fa fa-trash" aria-hidden="true"  (click)="removeItem(item)" style = 'color : #35559e ; cursor : pointer;'></i>
+            </td>
+          </tr>
+
+          <tr>
+            <td colspan="3"></td>
+            <td>
+              <h4 class="mt-2">
+                <strong>Total</strong>
+              </h4>
+            </td>
+            <td class="text-right">
+              <h4 class="mt-2">
+                <strong> {{cartTotal | currency:'USD':true}}</strong>
+              </h4>
+            </td>
+            <td>
+              <button type="button" class="btn btn-primary btn-rounded" style = 'width : 106%'>Checkout
+                <i class="fas fa-angle-right right" ></i>
+              </button>
+            </td>
+          </tr>
+          <!-- Fourth row -->
+
+        </tbody>
+        <!-- /.Table body -->
+
+      </table>
+
+    </div>
+
+  </div>
+
+</div>

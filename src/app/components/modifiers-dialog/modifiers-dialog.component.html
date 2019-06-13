@@ -1,0 +1,220 @@
+<div class="float-right close ">
+  <i class="fa fa-times-circle" (click)="close()" aria-hidden="true"></i>
+</div>
+<div class="container-fluid mb-2 p-3">
+  <h4>Modifier for {{ data.Name }}</h4>
+</div>
+<div class="container-fluid" *ngIf="data.Modifiers.Meat">
+  <mat-expansion-panel
+    class="mt-1"
+    [expanded]="step === 0"
+    (opened)="setStep(0)"
+  >
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Meat
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <mat-selection-list
+      #meatItem
+      (selectionChange)="onSelection($event, meatItem.selectedOptions)"
+    >
+      <mat-list-option
+        [checkboxPosition]="before"
+        [selected]="meat.Default"
+        *ngFor="let meat of data.Modifiers.Meat; let i = index"
+        [value]="meat"
+      >
+        <span>
+          <span class="float-left">
+            <img matListAvatar [src]="meat.Image" *ngIf="meat.Image" />
+            {{ meat.Item }}
+          </span>
+          <span class="float-right mt-2">
+            {{ meat.Price | currency: "USD":true }}
+          </span>
+          <mat-divider></mat-divider>
+        </span>
+      </mat-list-option>
+    </mat-selection-list>
+  </mat-expansion-panel>
+</div>
+
+<div class="container-fluid" *ngIf="data.Modifiers.Toppings">
+  <mat-expansion-panel
+    class="mt-1"
+    [expanded]="step === 1"
+    (opened)="setStep(1)"
+  >
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Toppings
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <mat-selection-list
+      #topping
+      (selectionChange)="onSelection($event, topping.selectedOptions)"
+    >
+      <mat-list-option
+        [checkboxPosition]="before"
+        [selected]="topping.Default"
+        *ngFor="let topping of data.Modifiers.Toppings"
+        [value]="topping"
+      >
+        <span>
+          <span class="float-left">
+            <img matListAvatar [src]="topping.Image" *ngIf="topping.Image" />
+            {{ topping.Item }}
+            <mat-divider></mat-divider>
+          </span>
+          <span class="float-right mt-2">
+            {{ topping.Price | currency: "USD":true }}
+          </span>
+        </span>
+      </mat-list-option>
+    </mat-selection-list>
+  </mat-expansion-panel>
+</div>
+
+<div class="container-fluid" *ngIf="data.Modifiers.Salsa">
+  <mat-expansion-panel
+    class="mt-1"
+    [expanded]="step === 2"
+    (opened)="setStep(2)"
+  >
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Salsa
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <mat-selection-list
+      #salsa
+      (selectionChange)="onSelection($event, salsa.selectedOptions)"
+    >
+      <mat-list-option
+        [checkboxPosition]="before"
+        [selected]="salsa.Default"
+        *ngFor="let salsa of data.Modifiers.Salsa"
+        [value]="salsa"
+      >
+        <span>
+          <span class="float-left">
+            <img matListAvatar [src]="salsa.Image" *ngIf="salsa.Image" />
+            {{ salsa.Item }}
+            <mat-divider></mat-divider>
+          </span>
+          <span class="float-right mt-2">
+            {{ salsa.Price | currency: "USD":true }}
+          </span>
+        </span>
+      </mat-list-option>
+    </mat-selection-list>
+  </mat-expansion-panel>
+</div>
+
+<div class="container-fluid" *ngIf="data.Modifiers.Extra">
+  <mat-expansion-panel
+    class="mt-1"
+    [expanded]="step === 3"
+    (opened)="setStep(3)"
+  >
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Extra
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <mat-selection-list
+      #extra
+      (selectionChange)="onSelection($event, extra.selectedOptions)"
+    >
+      <mat-list-option
+        [selected]="extra.Default"
+        *ngFor="let extra of data.Modifiers.Extra"
+        [value]="extra"
+      >
+        <img matListAvatar [src]="extra.Image" *ngIf="extra.Image" />
+        {{ extra.Item }}
+        <mat-divider></mat-divider>
+      </mat-list-option>
+    </mat-selection-list>
+  </mat-expansion-panel>
+</div>
+
+<div class="card card-body mt-3 ">
+  <span>
+    <span class="float-left">
+      <p style="font-size: 30px;">Total Amount :</p>
+    </span>
+    <span class="float-right">
+      <p style="font-size: 30px;">{{ totalAmount | currency: "USD":true }}</p>
+    </span>
+  </span>
+</div>
+
+<!-- <div class="container-fluid" >
+                      <div class="row" >
+                        <div class="col-md-4 mt-3" *ngFor = 'let topping of data.Modifiers.Toppings'>
+                         <div *ngIf = 'topping.Types' >
+                          <h5 (click) = 'toggle()'   >
+                            
+                              {{topping.Item}}  
+                              <i class="fa fa-angle-up"  *ngIf = 'show' aria-hidden="true"></i>
+                              <i class="fa fa-angle-down"  *ngIf = '!show' aria-hidden="true"></i>
+   
+                          </h5>
+                         
+                        </div>
+  
+                          <div *ngIf = '!topping.Types '>
+                            <div  style = 'cursor : pointer ;  display : grid  '>
+                              <img (click) = 'addExtraItem(topping)' [src] = 'topping.Image' style = 'width : 30%' />
+                             <h5>   {{topping.Item}}   </h5>
+                             <span style = 'display : flex'>{{topping.Price | currency:'USD':true}} 
+                                {{topping.Quantity}} Pcs 
+                                 </span>
+                            </div>
+                          </div>
+  
+  
+  
+                          <div class="container">
+                          
+  
+                           <div class = 'row' *ngIf = 'show' style = 'margin-left: -28px;'>
+                              <div  *ngFor = 'let type of topping.Types' class = 'col-md-6'  >
+                                <img   (click) = 'addExtraItem(type)' [src] = 'type.Image' style = 'width : 50px ; '  />
+                                  <span style = 'display: block ; margin-left : -20px' >
+                                   
+                                    <b> {{type.Item}}  </b> 
+                                      <span style = 'display : flex; font-size : 14px ;   '>{{type.Price | currency:'USD':true}} 
+                                     {{type.Quantity}} Pcs 
+                                      </span>
+                                  </span>
+                                  
+                                </div>
+                          </div>
+                        </div>
+                      
+    
+                   </div> -->
+
+<div class="container">
+  <div class="row">
+    <div class="col text-center">
+      <button
+        type="button"
+        type="submit"
+        (click)="addModifier(item)"
+        class="btn btn-primary btn-lg raised mt-4 ml-4"
+      >
+        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+        <i class="fa fa-plus" aria-hidden="true"></i>
+        Add Modifier
+      </button>
+    </div>
+  </div>
+</div>

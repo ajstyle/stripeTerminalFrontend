@@ -1,0 +1,54 @@
+
+
+
+.card.card-cascade.wider .card-body.card-body-cascade {
+  -webkit-box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
+  margin-left: 4%;
+  margin-right: 4%;
+  background: #fff;
+  z-index: 1;
+  -webkit-border-radius: 0 0 .25rem .25rem;
+ 
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  -webkit-border-radius: 0!important;
+  border-radius: 0!important;
+}
+
+.card.card-cascade.wider .view.view-cascade {
+  z-index: 2;
+}
+
+.card {
+   box-shadow: none !important ;
+  border: 0;
+  font-weight: 400;
+}
+
+.card.card-cascade .view.view-cascade {
+  -webkit-box-shadow: 0 5px 11px 0 rgba(0,0,0,.18), 0 4px 15px 0 rgba(0,0,0,.15);
+  box-shadow: 0 5px 11px 0 rgba(0,0,0,.18), 0 4px 15px 0 rgba(0,0,0,.15);
+  -webkit-border-radius: .25rem;
+  border-radius: .25rem;
+}
+
+.card-body {
+
+}
+
+.card-footer {
+  padding: .75rem 1.25rem;
+  background-color: rgba(0,0,0,.03);
+  border-top: 1px solid rgba(0,0,0,.125);
+  margin-left: -1.25rem;
+    margin-right: -1.25rem;
+}
+.card.card-ecommerce .card-footer {
+  background-color: transparent;
+}
+
+a{
+  color : black ; 
+  text-decoration: none ; 
+  
+}

@@ -1,0 +1,58 @@
+<mat-card class="pos-section">
+  <mat-card-title class="add-padding heading">Select Items</mat-card-title>
+
+  <mat-tab-group>
+    <mat-tab *ngFor="let type of products; let i = index" label="{{productTypes[i]}}">
+      <div class="row">
+
+     
+      <!-- <div class="col-6 mt-2" *ngFor="let item of type | async"  (click)="addToCheck(item)" > -->
+        
+        <div class="col-6 mt-2" *ngFor="let item of type | async"  (click)="openDialog(item)" >
+
+        <!-- <div [ngStyle]="{'background-image': 'url(' + item.img_url + ')'}" class="item-img"></div>
+          <h3 class="item-name">{{item|json}}</h3> -->
+      
+  <!--Card-->
+<div class="card card-cascade card-ecommerce wider" style = 'cursor : pointer'>
+
+  <!--Card image-->
+  <div class="view view-cascade overlay">
+    <img class="card-img-top" [src]="item.Image"
+      alt="">
+    <a>
+      <div class="mask rgba-white-slight"></div>
+    </a>
+  </div>
+  <!--/.Card image-->
+
+  <!--Card content-->
+  <div class="card-body card-body-cascade text-center">
+    <!--Category & Title-->
+    <h4 class="card-title"><strong>{{item.Name}}</strong></h4>
+
+    <!--Description-->
+    <p class="card-text">{{item.Description}}</p>
+    <p class="card-text">{{item.MeatChoices}}</p>
+
+    <!--Card footer-->
+    <div class="card-footer">
+      <span class="float-left">{{item.Price|currency:'USD':true}}</span>
+      <span class="float-right">
+      </span>
+    </div>
+
+  </div>
+  <!--/.Card content-->
+  
+</div>
+        </div>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+
+
+<!--/.Card-->
+
+  
+</mat-card>
