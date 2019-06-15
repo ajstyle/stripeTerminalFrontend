@@ -155,52 +155,7 @@
   </span>
 </div>
 
-<!-- <div class="container-fluid" >
-                      <div class="row" >
-                        <div class="col-md-4 mt-3" *ngFor = 'let topping of data.Modifiers.Toppings'>
-                         <div *ngIf = 'topping.Types' >
-                          <h5 (click) = 'toggle()'   >
-                            
-                              {{topping.Item}}  
-                              <i class="fa fa-angle-up"  *ngIf = 'show' aria-hidden="true"></i>
-                              <i class="fa fa-angle-down"  *ngIf = '!show' aria-hidden="true"></i>
-   
-                          </h5>
-                         
-                        </div>
-  
-                          <div *ngIf = '!topping.Types '>
-                            <div  style = 'cursor : pointer ;  display : grid  '>
-                              <img (click) = 'addExtraItem(topping)' [src] = 'topping.Image' style = 'width : 30%' />
-                             <h5>   {{topping.Item}}   </h5>
-                             <span style = 'display : flex'>{{topping.Price | currency:'USD':true}} 
-                                {{topping.Quantity}} Pcs 
-                                 </span>
-                            </div>
-                          </div>
-  
-  
-  
-                          <div class="container">
-                          
-  
-                           <div class = 'row' *ngIf = 'show' style = 'margin-left: -28px;'>
-                              <div  *ngFor = 'let type of topping.Types' class = 'col-md-6'  >
-                                <img   (click) = 'addExtraItem(type)' [src] = 'type.Image' style = 'width : 50px ; '  />
-                                  <span style = 'display: block ; margin-left : -20px' >
-                                   
-                                    <b> {{type.Item}}  </b> 
-                                      <span style = 'display : flex; font-size : 14px ;   '>{{type.Price | currency:'USD':true}} 
-                                     {{type.Quantity}} Pcs 
-                                      </span>
-                                  </span>
-                                  
-                                </div>
-                          </div>
-                        </div>
-                      
-    
-                   </div> -->
+
 
 <div class="container">
   <div class="row">

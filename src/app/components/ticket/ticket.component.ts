@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Item , TicketModifier } from '../../item';
 import { PosService } from '../../services/pos.service';
 import { ApiService } from '../../services/api.service';
-
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {CheckoutComponent} from '../checkout/checkout.component' ;
 
 @Component({
   selector: 'app-ticket',
@@ -16,7 +17,8 @@ export class TicketComponent implements OnInit {
   cartTotal = 0;
   cartNumItems = 0;
   ticketModifier: TicketModifier[] = [] ;
-  constructor(private ticketSync: PosService, private db: ApiService) { }
+  disabledButton = true ;
+  constructor(private ticketSync: PosService, public dialog: MatDialog, private db: ApiService) { }
 
   // Sync with ticketSync service on init
   ngOnInit() {
@@ -26,6 +28,9 @@ export class TicketComponent implements OnInit {
     this.ticketSync.currentTicketModifier.subscribe(data =>
       { this.ticketModifier = data ;
         console.log(this.ticketModifier);
+        if(this.ticketModifier.length > 0 ) {
+          this.disabledButton = false ;
+        }
     }) ;
   }
 
@@ -41,6 +46,7 @@ export class TicketComponent implements OnInit {
     this.calculateTotal();
   }
 
+
   // Remove item from ticket
   removeItem(item: Item) {
     // Check if item is in array
@@ -51,6 +57,11 @@ export class TicketComponent implements OnInit {
         // Set item quantity back to 1 (thus when readded, quantity isn't 0)
         this.ticketModifier[this.ticketModifier.indexOf(item)].Quantity = 1;
         this.ticketModifier.splice(index, 1);
+        if(this.ticketModifier.length > 0 ) {
+          this.disabledButton = false ;
+        }else{
+          this.disabledButton = true  ;
+        }
       }
     }
     this.syncTicket();
@@ -103,16 +114,23 @@ export class TicketComponent implements OnInit {
     this.calculateTotal();
   }
 
-  syncTicket() {
-    //this.ticketSync.changeTicket(this.ticket);
-    this.ticketSync.ticketModifiers(this.ticketModifier);
-  }
+  checkout(item): void {
+    const obj = { name : this.ticketModifier  , total : this.cartTotal   } ;
 
-  checkout() {
-    if (this.ticketModifier.length > 0) {
-  // this.db.pushOrder(this.ticket, this.cartTotal, this.cartNumItems);
-      this.clearCart();
-    }
+    
+    const dialogRef = this.dialog.open(CheckoutComponent, {
+      width: '600px',
+      height : '600px',
+      data : obj 
+     
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
+  syncTicket() {
+    this.ticketSync.ticketModifiers(this.ticketModifier);
   }
 
 }

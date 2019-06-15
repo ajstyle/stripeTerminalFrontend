@@ -1,0 +1,83 @@
+
+<div class="float-right close ">
+  <i class="fa fa-times-circle" (click)="close()" aria-hidden="true"></i>
+</div>
+<div class="container">
+
+
+<h4>Item List : </h4>
+<mat-list class = 'mt-2' *ngFor = 'let item of data.name ; let i = index '>
+    <mat-list-item> 
+      <div class="row" style = 'width : 100% '>
+        <div class="col-md-6 ">
+          <p class = 'float-left'>
+            {{i+1}}) &nbsp; {{item.Name}}
+            </p>
+        </div>
+        <div class="col-md-6 float-right">
+            <p class = 'float-right'>
+
+            {{item.Price | currency: "USD":true}}
+            </p>
+        </div>
+      </div>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+   
+  </mat-list>
+
+
+  <h4 class = 'mt-4'>Payment Options</h4>
+
+
+
+<mat-radio-group aria-label="Select an option"  > 
+  <div class = 'row mt-4'>
+      &nbsp;    <mat-radio-button *ngFor="let option of paymentOption" [value]="option"
+  (change)="selectedPaymentOption($event)" style = 'margin-right : 25px'>
+<span class="font-weight-bold">{{option}} </span>
+</mat-radio-button>
+  </div>
+
+</mat-radio-group>
+
+
+<div *ngIf = "selectedPayment == 'Manual Card Entry'" class = 'mt-3'>
+    <p class="font-weight-bold">Enter Card Details : </p>
+
+    <mat-form-field appearance="outline" style = 'width : 100%'>
+        <mat-label>Enter Card Number </mat-label>
+        <input matInput placeholder="Placeholder">
+      </mat-form-field>
+    
+
+</div>
+<div class="card  mt-3 ">
+  <span>
+    <span class="float-left">
+      <p style="font-size: 20px;" class = 'p-3'>Total Amount :</p>
+    </span>
+    <span class="float-right">
+      <p style="font-size: 20px;" class = 'p-3'>{{ data.total | currency: "USD":true }}</p>
+    </span>
+  </span>
+</div>
+
+
+
+<div class="container mt-2">
+  <div class="row">
+    <div class="col text-center">
+      <button
+        type="button"
+        type="submit"
+        (click)="pay()"
+        class="btn btn-primary btn-lg raised mt-4 ml-4"
+      >
+      <i class="fa fa-credit-card-alt" aria-hidden="true"></i>
+      Pay 
+      </button>
+    </div>
+  </div>
+</div>
+</div>

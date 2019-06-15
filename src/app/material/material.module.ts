@@ -9,12 +9,15 @@ import {MatDividerModule} from '@angular/material/divider';
 import {MatListModule} from '@angular/material/list';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
 
 
 @NgModule({
-  imports: [MatButtonModule, MatListModule,MatExpansionModule, MatDividerModule, MatCheckboxModule,
-     MatToolbarModule, MatCardModule, MatIconModule, MatDialogModule, MatTabsModule,MatTooltipModule],
-  exports: [MatButtonModule, MatListModule, MatExpansionModule,MatDividerModule, MatCheckboxModule,
-    MatToolbarModule, MatCardModule, MatIconModule, MatDialogModule, MatTabsModule,MatTooltipModule],
+  imports: [MatButtonModule, MatFormFieldModule, MatInputModule , MatListModule, MatExpansionModule, MatDividerModule, MatCheckboxModule,
+     MatToolbarModule, MatCardModule, MatIconModule, MatDialogModule, MatTabsModule, MatTooltipModule, MatRadioModule],
+  exports: [MatButtonModule, MatListModule, MatFormFieldModule, MatInputModule, MatExpansionModule, MatDividerModule, MatCheckboxModule,
+    MatToolbarModule, MatCardModule, MatIconModule, MatDialogModule, MatTabsModule, MatTooltipModule, MatRadioModule],
 })
 export class MaterialModule { }

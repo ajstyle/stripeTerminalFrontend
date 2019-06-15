@@ -9,13 +9,16 @@ import {TicketComponent} from './components/ticket/ticket.component' ;
 import {PosComponent} from './components/pos/pos.component' ;
 import {ApiService} from './services/api.service' ;
 import {PosService} from './services/pos.service';
-import { ModifiersDialogComponent } from './components/modifiers-dialog/modifiers-dialog.component' ;
+import { ModifiersDialogComponent } from './components/modifiers-dialog/modifiers-dialog.component';
+import { CheckoutComponent } from './components/checkout/checkout.component' ;
+
 @NgModule({
   declarations: [
     AppComponent,
     TicketComponent,
     PosComponent,
-    ModifiersDialogComponent
+    ModifiersDialogComponent,
+    CheckoutComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +29,7 @@ import { ModifiersDialogComponent } from './components/modifiers-dialog/modifier
 
   ],
   providers: [ApiService, PosService],
-  entryComponents : [ModifiersDialogComponent],
+  entryComponents : [ModifiersDialogComponent, CheckoutComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

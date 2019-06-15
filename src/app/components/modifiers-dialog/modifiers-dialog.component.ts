@@ -41,6 +41,7 @@ export class ModifiersDialogComponent implements OnInit {
     this.totalAfterAddModifier();
   }
 
+
   close() {
     this.dialogRef.close();
   }
@@ -86,27 +87,7 @@ export class ModifiersDialogComponent implements OnInit {
   setStep(index: number) {
     this.step = index;
   }
-  // save(meat) {
-  //   console.log(meat.selectedOptions.selected);
-  // }
-  // addExtraItem(item) {
-  //   console.log(this.ticket.length);
-  //   if (this.ticket.length !== 0) {
-  //     if (this.ticket[0].selectedModifier.includes(item)) {
-  //       this.flag = true;
-  //     } else {
-  //       this.flag = false;
-  //     }
-  //   }
-  //   item.Quantity++;
-  //   this.modifier.push(item);
-
-  // }
-
-
-
-
-
+  
 
   addModifier() {
     const obj = JSON.parse(JSON.stringify(this.data));
@@ -134,54 +115,6 @@ export class ModifiersDialogComponent implements OnInit {
     this.ticketSync.updateTotal(this.cartTotal);
     this.dialogRef.close();
   }
-  // addToCheck(item: Item) {
-  //   // If the item already exists, add 1 to quantity
-  //   console.log(item);
-  //   if (this.ticket.includes(item)) {
-  //     this.ticket[this.ticket.indexOf(item)].Quantity += 1;
-  //   } else {
-  //     item.selectedModifier = this.modifier;
-  //     item.Quantity = 1;
-  //     this.ticket.push(item);
 
-  //     console.log(this.ticket);
-  //   }
-
-  //  // this.calculateTotal(item);
-
-  // }
-
-
-  // // Calculate cart total
-  // calculateTotal(cartItem) {
-  //   let total = 0;
-  //   let cartNum = 0;
-  //   this.ticket.forEach((item: Item) => {
-  //     console.log('selectedModifer;', item);
-  //     total += (item.Price * item.Quantity);
-
-  //     if (item.selectedModifier.length !== 0) {
-  //       item.selectedModifier.forEach(modifier => {
-
-  //         total += modifier.Price * modifier.Quantity;
-  //         console.log(total);
-  //       });
-  //     }
-
-  //     cartNum += item.Quantity;
-
-  //   });
-
-
-
-  //   this.cartTotal = total;
-  //   console.log('cartTotal', this.cartTotal);
-  //   this.cartNumItems = cartNum;
-  //   console.log('cartNumItems', this.cartNumItems);
-
-  //   this.ticketSync.updateNumItems(this.cartNumItems);
-  //   this.ticketSync.updateTotal(this.cartTotal);
-
-  // }
 }
 
