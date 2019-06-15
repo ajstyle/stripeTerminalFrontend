@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA , MatDialogRef } from '@angular/material';
 import { PosService } from '../../services/pos.service';
 import { ApiService } from '../../services/api.service';
-import { Item, Order } from '../../item';
+import { Item, Order,TicketModifier } from '../../item';
 
 @Component({
   selector: 'app-modifiers-dialog',
@@ -14,7 +14,7 @@ export class ModifiersDialogComponent implements OnInit {
   cartTotal = 0;
   cartNumItems = 0;
   ticket: Item[];
-  ticketModifier: Item[];
+  ticketModifier: TicketModifier[];
   modifier = [];
   flag = true;
   selectedOptions: Array<any> = [];
@@ -25,7 +25,7 @@ export class ModifiersDialogComponent implements OnInit {
   show = true;
 
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: Item, 
+  constructor(@Inject(MAT_DIALOG_DATA) public data , 
               public dialogRef: MatDialogRef<ModifiersDialogComponent>,
               private ticketSync: PosService, private db: ApiService) {
   }
@@ -87,7 +87,6 @@ export class ModifiersDialogComponent implements OnInit {
   setStep(index: number) {
     this.step = index;
   }
-  
 
   addModifier() {
     const obj = JSON.parse(JSON.stringify(this.data));
@@ -102,7 +101,7 @@ export class ModifiersDialogComponent implements OnInit {
     let total = 0;
     let cartNum = 0;
     console.log('caluculate', this.ticket);
-    this.ticketModifier.forEach((item: Item) => {
+    this.ticketModifier.forEach((item: TicketModifier) => {
       console.log('selectedModifer;', item);
       total += (item.Price * item.Quantity);
       cartNum += item.Quantity;

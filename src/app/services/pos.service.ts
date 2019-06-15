@@ -8,7 +8,7 @@ export class PosService {
 
   private ticket = TICKET ;
   private tickerModifier = TICKETModifier ;
-  private ticketModifierSource = new BehaviorSubject<Item[]>(this.tickerModifier);
+  private ticketModifierSource = new BehaviorSubject<TicketModifier[]>(this.tickerModifier);
 
   private ticketSource = new BehaviorSubject<Item[]>(this.ticket);
 
@@ -38,7 +38,7 @@ export class PosService {
     this.cartNumSource.next(num);
   }
 
-  ticketModifiers(ticket: Item[]) {
+  ticketModifiers(ticket: TicketModifier[]) {
     this.ticketModifierSource.next(ticket) ;
   }
 }

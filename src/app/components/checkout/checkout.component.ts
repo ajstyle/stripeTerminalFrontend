@@ -10,7 +10,7 @@ import {TicketModifier} from '../../item' ;
 export class CheckoutComponent implements OnInit {
   paymentOption = ['Cash' , 'Manual Card Entry' , 'User Points'] ;
  selectedPayment : string ; 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: TicketModifier ,
+  constructor(@Inject(MAT_DIALOG_DATA) public data ,
               public dialogRef: MatDialogRef<CheckoutComponent>,
 ) {
   }

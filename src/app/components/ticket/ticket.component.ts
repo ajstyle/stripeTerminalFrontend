@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Item , TicketModifier } from '../../item';
+import {  TicketModifier } from '../../item';
 import { PosService } from '../../services/pos.service';
 import { ApiService } from '../../services/api.service';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
@@ -12,7 +12,7 @@ import {CheckoutComponent} from '../checkout/checkout.component' ;
 })
 export class TicketComponent implements OnInit {
 
-  ticket: Item[] = [];
+  ticket: TicketModifier[] = [];
   itemPrice  ;
   cartTotal = 0;
   cartNumItems = 0;
@@ -35,7 +35,7 @@ export class TicketComponent implements OnInit {
   }
 
   // Add item to ticket.
-  addItem(item: Item) {
+  addItem(item: TicketModifier) {
     // If the item already exists, add 1 to quantity
     if (this.ticketModifier.includes(item)) {
       this.ticketModifier[this.ticketModifier.indexOf(item)].Quantity += 1;
@@ -48,7 +48,7 @@ export class TicketComponent implements OnInit {
 
 
   // Remove item from ticket
-  removeItem(item: Item) {
+  removeItem(item: TicketModifier) {
     // Check if item is in array
     if (this.ticketModifier.includes(item)) {
       // Splice the element out of the array
@@ -69,7 +69,7 @@ export class TicketComponent implements OnInit {
   }
 
   // Reduce quantity by one
-  subtractOne(item: Item) {
+  subtractOne(item: TicketModifier) {
     // Check if last item, if so, use remove method
     if (this.ticketModifier[this.ticketModifier.indexOf(item)].Quantity === 1) {
       this.removeItem(item);
@@ -85,7 +85,7 @@ export class TicketComponent implements OnInit {
     let total = 0;
     let cartitems = 0;
     // Multiply item price by item quantity, add to total
-    this.ticketModifier.forEach((item: Item) => {
+    this.ticketModifier.forEach((item: TicketModifier) => {
       this.itemPrice  = item.Price * item.Quantity ;
 
       total += (item.Price * item.Quantity);
@@ -105,7 +105,7 @@ export class TicketComponent implements OnInit {
   // Remove all items from cart
   clearCart() {
     // Reduce back to initial quantity (1 vs 0 for re-add)
-    this.ticketModifier.forEach((item: Item) => {
+    this.ticketModifier.forEach((item: TicketModifier) => {
       item.Quantity = 1;
     });
     // Empty local ticket variable then sync
@@ -114,7 +114,7 @@ export class TicketComponent implements OnInit {
     this.calculateTotal();
   }
 
-  checkout(item): void {
+  checkout(): void {
     const obj = { name : this.ticketModifier  , total : this.cartTotal   } ;
 
     

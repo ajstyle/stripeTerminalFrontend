@@ -1,6 +1,6 @@
 export interface Item {
   id?: number;
-  name: string;
+  Name: string;
   Price: number;
   item_type: string;
   img_name?: string;
