@@ -1,33 +1,94 @@
-
 <div class="float-right close ">
   <i class="fa fa-times-circle" (click)="close()" aria-hidden="true"></i>
 </div>
-<div class="container">
+<div class="container" style = '    margin: 0px;
+height: 98%;
+padding: 0px;
+ '>
 
+ <h4> Checkout </h4>
+<div class="row" style = 'height: 100%;'>
 
-<h4>Item List : </h4>
-<mat-list class = 'mt-2' *ngFor = 'let item of data.name ; let i = index '>
-    <mat-list-item> 
-      <div class="row" style = 'width : 100% '>
-        <div class="col-md-6 ">
-          <p class = 'float-left'>
-            {{i+1}}) &nbsp; {{item.Name}}
-            </p>
+<div class='col-md-4 card'  >
+  <h4 class = 'text-center mt-4'>Item List : </h4>
+  <mat-list class = 'mt-2' *ngFor = 'let item of data.name ; let i = index '>
+      <mat-list-item> 
+        <div class="row" style = 'width : 100% '>
+          <div class="col-md-10 ">
+            <p class = 'float-left'>
+             {{item.Name}} X {{item.Quantity}}
+              </p>
+          </div>
+          <div class="col-md-2 float-right">
+              <p class = 'float-right'>
+  
+              {{item.Price * item.Quantity | currency: "USD":true}}
+              </p>
+          </div>
         </div>
-        <div class="col-md-6 float-right">
-            <p class = 'float-right'>
-
-            {{item.Price | currency: "USD":true}}
-            </p>
-        </div>
-      </div>
-    </mat-list-item>
+      </mat-list-item>  
+      <mat-divider></mat-divider>
+     
+    </mat-list>
     <mat-divider></mat-divider>
-   
-  </mat-list>
+    <div class="container">
+
+    
+    <div class="row" style = 'width : 100% '>
+      <div class="col-md-10 ">
+
+          <div class="font-weight-bold">Total</div> 
+
+      </div>
+      <div class="col-md-2 float-right">
+        
+
+          
+            <div class="font-weight-bold float-right">  {{ data.total | currency: "USD":true }}</div> 
+        
+      </div>
+    </div>
+    </div>
+</div>
+
+<div class="col-md-8">
+
+  <div class = 'text-center' >
+    <button [disabled] = 'disabledButton'>
+  <i class="fa fa-minus-circle icon"   (click) = 'subtractNumber()' aria-hidden="true"></i>
+</button>
+  <span style = 'font-size: 50px;
+  padding: 20px;
+'>{{number}}</span>
+    <button >
+  <i class="fa fa-plus-circle icon " aria-hidden="true" (click) = 'addNumber()'></i>
+  </button>
+  </div>
+  <mat-divider></mat-divider>
+
+  <div class="container mt-5">
+<div *ngFor = 'let i of index' class="row mt-3">
+      <mat-divider></mat-divider>
+
+      <div class = 'col-md-4' >
+          <select class="form-control" >
+              <option *ngFor = 'let payment of paymentOption'>{{payment}}</option>
+              
+            </select>
+      </div>
+      <div class = 'col-md-4' >
+          <input  type="text" class = 'form-control ' placeholder="Test Price" [ngModel]="splitRow[0].total | currency: 'USD':true"  
+         disabled />
+      </div>
+      <div class = 'col-md-4'>
+        <button class = 'btn btn-success chargeButton'> Charge </button>
+      </div>
+    </div>
+
+  </div>
 
 
-  <h4 class = 'mt-4'>Payment Options</h4>
+  <!-- <h4 class = 'mt-4'>Payment Options</h4>
 
 
 
@@ -39,7 +100,7 @@
 </mat-radio-button>
   </div>
 
-</mat-radio-group>
+</mat-radio-group> -->
 
 
 <div *ngIf = "selectedPayment == 'Manual Card Entry'" class = 'mt-3'>
@@ -52,7 +113,7 @@
     
 
 </div>
-<div class="card  mt-3 ">
+<!-- <div class="card  mt-3 ">
   <span>
     <span class="float-left">
       <p style="font-size: 20px;" class = 'p-3'>Total Amount :</p>
@@ -61,11 +122,11 @@
       <p style="font-size: 20px;" class = 'p-3'>{{ data.total | currency: "USD":true }}</p>
     </span>
   </span>
-</div>
+</div> -->
 
 
 
-<div class="container mt-2">
+<!-- <div class="container mt-2">
   <div class="row">
     <div class="col text-center">
       <button
@@ -79,5 +140,8 @@
       </button>
     </div>
   </div>
+</div> -->
+</div>
+
 </div>
 </div>

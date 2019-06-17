@@ -59,7 +59,7 @@ export class TicketComponent implements OnInit {
         this.ticketModifier.splice(index, 1);
         if(this.ticketModifier.length > 0 ) {
           this.disabledButton = false ;
-        }else{
+        } else {
           this.disabledButton = true  ;
         }
       }
@@ -117,11 +117,11 @@ export class TicketComponent implements OnInit {
   checkout(): void {
     const obj = { name : this.ticketModifier  , total : this.cartTotal   } ;
 
-    
     const dialogRef = this.dialog.open(CheckoutComponent, {
-      width: '600px',
+      width: '1000px',
       height : '600px',
-      data : obj 
+      data : obj ,
+      panelClass: 'custom-dialog-container' 
      
     });
 

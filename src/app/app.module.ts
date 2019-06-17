@@ -10,7 +10,9 @@ import {PosComponent} from './components/pos/pos.component' ;
 import {ApiService} from './services/api.service' ;
 import {PosService} from './services/pos.service';
 import { ModifiersDialogComponent } from './components/modifiers-dialog/modifiers-dialog.component';
-import { CheckoutComponent } from './components/checkout/checkout.component' ;
+import { CheckoutComponent } from './components/checkout/checkout.component';
+import { SplitAmountComponent } from './split-amount/split-amount.component' ;
+import { ReactiveFormsModule , FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,13 +20,16 @@ import { CheckoutComponent } from './components/checkout/checkout.component' ;
     TicketComponent,
     PosComponent,
     ModifiersDialogComponent,
-    CheckoutComponent
+    CheckoutComponent,
+    SplitAmountComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MaterialModule,
     BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
     MDBBootstrapModule.forRoot()
 
   ],

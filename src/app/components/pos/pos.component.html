@@ -8,7 +8,7 @@
      
       <!-- <div class="col-6 mt-2" *ngFor="let item of type | async"  (click)="addToCheck(item)" > -->
         
-        <div class="col-6 mt-2" *ngFor="let item of type | async"  (click)="openDialog(item)" >
+        <div class="col-4 mt-2" *ngFor="let item of type | async"  (click)="openDialog(item) " >
 
         <!-- <div [ngStyle]="{'background-image': 'url(' + item.img_url + ')'}" class="item-img"></div>
           <h3 class="item-name">{{item|json}}</h3> -->
@@ -32,7 +32,6 @@
     <h4 class="card-title"><strong>{{item.Name}}</strong></h4>
 
     <!--Description-->
-    <p class="card-text">{{item.Description}}</p>
     <p class="card-text">{{item.MeatChoices}}</p>
 
     <!--Card footer-->

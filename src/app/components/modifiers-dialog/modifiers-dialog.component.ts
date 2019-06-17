@@ -3,6 +3,7 @@ import { MAT_DIALOG_DATA , MatDialogRef } from '@angular/material';
 import { PosService } from '../../services/pos.service';
 import { ApiService } from '../../services/api.service';
 import { Item, Order,TicketModifier } from '../../item';
+import { forEach } from '@angular/router/src/utils/collection';
 
 @Component({
   selector: 'app-modifiers-dialog',
@@ -31,12 +32,16 @@ export class ModifiersDialogComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.data);
+    console.log('======', this.data);
     this.ticketSync.currentTicket.subscribe(data => this.ticket = data);
     this.ticketSync.currentTotal.subscribe(total => this.cartTotal = total);
     this.ticketSync.currentCartNum.subscribe(num => this.cartNumItems);
     this.ticketSync.currentTicketModifier.subscribe(data => this.ticketModifier = data);
-    this.defaultItem();
+    if (this.data.Modifiers.Deals) {
+      this.defaultItemDeals();
+    } else {
+      this.defaultItem();
+    }
     console.log(this.selectedOptions);
     this.totalAfterAddModifier();
   }
@@ -68,6 +73,29 @@ export class ModifiersDialogComponent implements OnInit {
     }
   }
 
+  defaultItemDeals() {
+    console.log('====',this.data.Modifiers);
+    const data = this.data.Modifiers ; 
+    console.log( data.Deals);
+
+    data.Deals.forEach( (e)=>{
+      console.log(e);
+  
+    // tslint:disable-next-line:forin
+      for (const key in e) {
+        console.log(key)
+        if(key !== 'category'){
+          e[key].map(x => {
+            console.log(x);
+            if (x.Default) {
+              this.selectedOptions.push(x);
+            }
+          });
+        }
+      
+    }
+  } )
+  }
   toggle() {
     this.show = !this.show;
   }
