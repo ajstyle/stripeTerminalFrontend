@@ -9,7 +9,7 @@ import { Observable, BehaviorSubject , of} from 'rxjs';
 @Injectable()
 export class ApiService {
 
-  seafood() {
+  seaFood() {
     return of(
       [
         {

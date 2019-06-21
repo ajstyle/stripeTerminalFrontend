@@ -11,7 +11,6 @@ import {ApiService} from './services/api.service' ;
 import {PosService} from './services/pos.service';
 import { ModifiersDialogComponent } from './components/modifiers-dialog/modifiers-dialog.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
-import { SplitAmountComponent } from './split-amount/split-amount.component' ;
 import { ReactiveFormsModule , FormsModule } from '@angular/forms';
 
 @NgModule({
@@ -21,7 +20,6 @@ import { ReactiveFormsModule , FormsModule } from '@angular/forms';
     PosComponent,
     ModifiersDialogComponent,
     CheckoutComponent,
-    SplitAmountComponent
   ],
   imports: [
     BrowserModule,

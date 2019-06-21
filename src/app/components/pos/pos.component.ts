@@ -25,7 +25,7 @@ export class PosComponent implements OnInit {
     this.ticketSync.currentTicket.subscribe(data => this.ticket = data  );
     this.ticketSync.currentTotal.subscribe(total => this.cartTotal = total);
     this.ticketSync.currentCartNum.subscribe(num => this.cartNumItems);
-    this.products[0] = this.db.seeFood();
+    this.products[0] = this.db.seaFood();
     this.products[1] = this.db.mexicanFood();
     this.products[2] = this.db.dealFood();
 
