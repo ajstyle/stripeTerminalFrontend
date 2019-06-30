@@ -6,3 +6,50 @@
   z-index: 46;
   
 }
+
+.amount {
+  font-size: 30px
+}
+
+@media(max-width:800px){
+  h4{
+    font-size: 20px ; 
+  }
+
+  .amount {
+    font-size: 16px ; 
+  }
+
+  .container-fluid {
+    padding: 0px ; 
+  }
+  
+  mat-expansion-panel-header {
+    padding: 4px !important ; 
+  }
+  .mat-expansion-panel-body{
+    padding: 0px !important ; ;
+  }
+  .mat-list-item-content{
+    padding: 0px !important ; 
+  }
+
+  .mat-expansion-panel-body {
+    padding: 1px !important ;
+}
+  .float-left{
+    font-size : 12px ;  
+    margin-top: 5px;
+
+  }
+  .float-right {
+    font-size : 12px ;  
+    margin-top: 5px;
+  }
+  .mat-list-text {
+    padding: 0px !important;
+  }
+  img {
+    display : none ; 
+  }
+}

@@ -2,7 +2,7 @@
   <div class="card-body">
      <h3> Order Summary</h3>
     <!-- Shopping Cart table -->
-    <div class="table-responsive">
+    <div class="table-responsive-sm">
 
       <table class="table product-table">
 
@@ -40,7 +40,7 @@
               <h5>
                 <strong>{{item.Name}}</strong>
                 <div class="row mt-2">
-                  <span class = 'col-md-1 ml-1 mt-2' *ngFor = 'let modifier of item.selectedModifier'>
+                  <span class = 'col-1 ml-1 mt-2' *ngFor = 'let modifier of item.selectedModifier'>
                     <img [src] = 'modifier.Image'  [matTooltip]="modifier.Item"
                     style = 'width : 30px ; height : 30px'   />
                   </span>
@@ -81,7 +81,7 @@
               </h4>
             </td>
             <td>
-              <button type="button" class="btn btn-primary btn-rounded" (click) = 'checkout()' [disabled]='disabledButton'  style = 'width : 106%'>Checkout
+              <button type="button" class="btn btn-primary btn-rounded" (click) = 'setOrderNumber()' [disabled]='disabledButton'  style = 'width : 106%'>Checkout
                 <i class="fas fa-angle-right right" ></i>
               </button>
             </td>

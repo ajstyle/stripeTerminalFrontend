@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { Item } from '../item';
+import { Item, KDS } from '../item';
 import { TicketModifier } from '../item';
 
 @Injectable()
@@ -8,7 +8,10 @@ export class PosService {
 
   private ticket = TICKET ;
   private tickerModifier = TICKETModifier ;
+  private kds = KDS ;
   private ticketModifierSource = new BehaviorSubject<TicketModifier[]>(this.tickerModifier);
+
+  private kdsModifierSource = new BehaviorSubject<KDS[]>(this.kds);
 
   private ticketSource = new BehaviorSubject<Item[]>(this.ticket);
 
@@ -24,6 +27,7 @@ export class PosService {
   currentTicketModifier = this.ticketModifierSource.asObservable();
   currentTotal = this.cartTotalSource.asObservable();
   currentCartNum = this.cartNumSource.asObservable();
+  currentKds = this.kdsModifierSource.asObservable() ;
   constructor() { }
 
   changeTicket(ticket: Item[]) {
@@ -41,6 +45,12 @@ export class PosService {
   ticketModifiers(ticket: TicketModifier[]) {
     this.ticketModifierSource.next(ticket) ;
   }
+
+  updateKDS(orders: KDS[]) {
+    console.log('OrderService,' , orders) ;
+    
+    this.kdsModifierSource.next(orders) ;
+  }
 }
 
 // Demo content
@@ -48,3 +58,4 @@ const TICKET: Item[] = [
 ];
 
 const TICKETModifier: TicketModifier[] = [] ;
+const KDS: KDS[] = [] ;

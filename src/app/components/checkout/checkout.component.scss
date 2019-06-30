@@ -12,6 +12,46 @@ padding : 0px !important ;
 
 }
 
+@media(max-width:800px){
+  .float-left {
+    padding: 1px;
+    font-size: 12px;
+  }
+  .float-right {
+    font-size: 12px;
+  }
+
+  .totalAmount{
+    margin-top: 5px ; 
+  }
+  .icon {
+    font-size : 30px ; 
+  }
+
+  .splitAmount{
+    font-size: 30px;
+    padding: 20px;
+  }
+  
+  .chargeButton {
+  outline: none;
+  padding: 8px;
+  top: 2px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+  h4{
+    font-size: 14px ;
+  }
+
+}
+
+
+.splitAmount{
+  font-size: 50px;
+  padding: 20px;
+}
 .chargeButton {
   outline: none;
   padding: 8px;

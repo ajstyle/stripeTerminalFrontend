@@ -7,9 +7,13 @@ export interface Item {
   img_url?: string;
   Quantity?: number;
   selectedModifier?: Array<any>  ;
-  Modifiers?: Array<any> ; 
+  Modifiers?: Array<any> ;
 }
 
+export interface KDS extends Item {
+  orderNumber: number ;
+
+}
 export interface TicketModifier {
   id?: number;
   name: string;
@@ -19,10 +23,14 @@ export interface TicketModifier {
   img_url?: string;
   Quantity?: number;
   selectedModifier?: Array<any>  ;
-  Modifiers?: Array<any> ; 
+  Modifiers?: Array<any> ;
 }
 
-
+export interface OrderObject {
+order: Array<TicketModifier> ;
+total: number ;
+orderNumber: number ;
+}
 export interface Order {
   orderNumber: string;
   items?: Item[];

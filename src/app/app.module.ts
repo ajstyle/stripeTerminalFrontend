@@ -12,7 +12,10 @@ import {PosService} from './services/pos.service';
 import { ModifiersDialogComponent } from './components/modifiers-dialog/modifiers-dialog.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { ReactiveFormsModule , FormsModule } from '@angular/forms';
-
+import { KdsComponent } from './components/kds/kds.component';
+import { OrderComponent } from './components/order/order.component';
+import {OrderNumberComponent} from './components/order-number/order-number.component';
+import { ThankyouComponent } from './components/thankyou/thankyou.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,6 +23,11 @@ import { ReactiveFormsModule , FormsModule } from '@angular/forms';
     PosComponent,
     ModifiersDialogComponent,
     CheckoutComponent,
+    OrderComponent,
+    KdsComponent,
+    OrderComponent,
+    OrderNumberComponent,
+    ThankyouComponent
   ],
   imports: [
     BrowserModule,
@@ -29,10 +37,9 @@ import { ReactiveFormsModule , FormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule,
     MDBBootstrapModule.forRoot()
-
   ],
   providers: [ApiService, PosService],
-  entryComponents : [ModifiersDialogComponent, CheckoutComponent],
+  entryComponents : [ModifiersDialogComponent, CheckoutComponent, OrderComponent, OrderNumberComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

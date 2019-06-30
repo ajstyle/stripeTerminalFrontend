@@ -1,0 +1,44 @@
+
+
+ 
+<div class="container">
+
+    <h2 class = 'text-center p-4'>Kitchen Display System (KDS)</h2>
+    <div class="row ">
+    <div class="col-md-4"  *ngFor = 'let kds of kdsArray'>
+      <div class="card " >
+  
+     <span class = 'text-center orderHeading'>  Order No :  {{kds.orderNumber}} </span>
+  
+       <mat-divider>  </mat-divider>
+  
+        <div class="card-body"  >
+          <div   *ngFor = 'let order of kds.order' class = 'mt-2'>
+            <div class="row">
+
+            
+            <div class="col-md-8">
+                <span class = 'item'> {{order.Name}}   </span>
+            </div>
+            <div class="col-md-4">
+                <span class = 'item'> {{order.Quantity}} pcs </span>
+            </div>
+          </div>
+
+          <div  *ngIf = 'order?.selectedModifier.length !== 0 '>
+          <div class = 'modifier'> (Added Modifier) </div>
+            <span *ngFor = 'let modifier of order?.selectedModifier ; let i = index'>
+              <span class = 'modifierItem'> {{i+1}}:  {{modifier.Item}} </span>
+            </span>
+            </div>
+            
+            <mat-divider style = 'margin-top: 11px;'>  </mat-divider>
+
+            </div>
+      </div>
+    </div>
+    
+    </div>
+  </div>
+  </div>
+  

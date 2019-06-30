@@ -1,0 +1,26 @@
+.close{
+  position: relative;
+  font-size: 27px;
+  bottom: 19px;
+  left: 20px;
+  z-index: 46;
+  
+}
+
+@media(max-width:800px){
+  h3{
+    font-size: 13px ; 
+  }
+
+  .card-title{
+    font-size: 10px ; 
+  }
+  .text-center {
+    font-size: 11px
+  }
+  .card-body{
+    padding-left: 1px  ; 
+    padding-right: 1px ; 
+  }
+}
+

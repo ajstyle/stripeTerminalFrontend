@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA , MatDialogRef } from '@angular/material';
 import { PosService } from '../../services/pos.service';
 import { ApiService } from '../../services/api.service';
-import { Item, Order,TicketModifier } from '../../item';
+import { Item, Order, TicketModifier } from '../../item';
 import { forEach } from '@angular/router/src/utils/collection';
 
 @Component({
@@ -26,7 +26,7 @@ export class ModifiersDialogComponent implements OnInit {
   show = true;
 
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data , 
+  constructor(@Inject(MAT_DIALOG_DATA) public data ,
               public dialogRef: MatDialogRef<ModifiersDialogComponent>,
               private ticketSync: PosService, private db: ApiService) {
   }
@@ -74,17 +74,17 @@ export class ModifiersDialogComponent implements OnInit {
   }
 
   defaultItemDeals() {
-    console.log('====',this.data.Modifiers);
-    const data = this.data.Modifiers ; 
+    console.log('====', this.data.Modifiers);
+    const data = this.data.Modifiers ;
     console.log( data.Deals);
 
-    data.Deals.forEach( (e)=>{
+    data.Deals.forEach( (e) => {
       console.log(e);
-  
+
     // tslint:disable-next-line:forin
       for (const key in e) {
-        console.log(key)
-        if(key !== 'category'){
+        console.log(key);
+        if (key !== 'category') {
           e[key].map(x => {
             console.log(x);
             if (x.Default) {
@@ -92,9 +92,9 @@ export class ModifiersDialogComponent implements OnInit {
             }
           });
         }
-      
+
     }
-  } )
+  } );
   }
   toggle() {
     this.show = !this.show;
@@ -128,9 +128,9 @@ export class ModifiersDialogComponent implements OnInit {
   calculateTotal() {
     let total = 0;
     let cartNum = 0;
-    console.log('caluculate', this.ticket);
+    console.log('calculate', this.ticket);
     this.ticketModifier.forEach((item: TicketModifier) => {
-      console.log('selectedModifer;', item);
+      console.log('selectedModifier;', item);
       total += (item.Price * item.Quantity);
       cartNum += item.Quantity;
     });

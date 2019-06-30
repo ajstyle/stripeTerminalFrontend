@@ -48,6 +48,13 @@
   background-color: transparent;
 }
 
+@media(max-width:800px){
+  .card-title{
+    font-size: 13px ; 
+  }
+}
+
+
 a{
   color : black ; 
   text-decoration: none ; 

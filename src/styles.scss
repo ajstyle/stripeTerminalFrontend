@@ -66,7 +66,14 @@
 /***********************
   CUSTON BTN VALUES
 ************************/
+*{
+  font-family: 'Lato', sans-serif;
 
+}
+
+.mat-expansion-panel-body {
+  padding: 1px !important ;
+}
 .btn {
 	padding: 14px 24px;
 	border: 0 none;

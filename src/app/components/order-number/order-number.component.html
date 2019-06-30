@@ -1,0 +1,78 @@
+
+<div class="float-right close ">
+    <i class="fa fa-times-circle" (click)="close()" aria-hidden="true"></i>
+  </div>
+<form name = 'orderNumber' #order = 'ngForm'>
+  <div class="container">
+      <div class="row mt-3">
+            <h3> Enter Order Number : </h3>
+
+          </div>
+      <div class="row mt-3">
+          <div class="col-md-12">
+              <input type = 'text' name = 'orderNo' class = 'form-control'  required ngModel>
+          </div>
+      </div>
+  </div>
+
+  <div class="container">
+  <div class="row mt-3">
+      <div class="col text-center">
+        <button
+          type="button"
+          [disabled] = 'order.invalid'
+          type="submit"
+          (click)="checkout(order.value)"
+          class="btn btn-primary btn-lg raised mt-4 ml-4"
+        >
+          <i class="fa fa-chevron-right" aria-hidden="true"></i>
+          Continue
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-3">
+
+     
+    <!-- <div class="col-6 mt-2" *ngFor="let item of type | async"  (click)="addToCheck(item)" > -->
+      <div class="col-4 mt-2" *ngFor="let item of products | async"  (click)="openDialog(item) " >
+
+      <!-- <div [ngStyle]="{'background-image': 'url(' + item.img_url + ')'}" class="item-img"></div>
+        <h3 class="item-name">{{item|json}}</h3> -->
+    
+<!--Card-->
+<div class="card card-cascade card-ecommerce wider" style = 'cursor : pointer'>
+
+<!--Card image-->
+<div class="view view-cascade overlay">
+  <img class="card-img-top" [src]="item.Image"
+    alt="">
+  <a>
+    <div class="mask rgba-white-slight"></div>
+  </a>
+</div>
+<!--/.Card image-->
+
+<!--Card content-->
+<div class="card-body card-body-cascade text-center">
+  <!--Category & Title-->
+  <h4 class="card-title"><strong>{{item.Name}}</strong></h4>
+
+  <!--Description-->
+  <p class="card-text">{{item.MeatChoices}}</p>
+
+  <!--Card footer-->
+  <div>
+    <span class="text-center ">{{item.Price|currency:'USD':true}}</span>
+ 
+  </div>
+
+</div>
+<!--/.Card content-->
+
+</div>
+      </div>
+    </div>
+
+  </form>

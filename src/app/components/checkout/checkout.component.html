@@ -11,15 +11,15 @@ padding: 0px;
 
 <div class='col-md-4 card'  >
   <h4 class = 'text-center mt-4'>Item List : </h4>
-  <mat-list class = 'mt-2' *ngFor = 'let item of data.name ; let i = index '>
+  <mat-list class = 'mt-2' *ngFor = 'let item of data.order ; let i = index '>
       <mat-list-item> 
         <div class="row" style = 'width : 100% '>
-          <div class="col-md-10 ">
+          <div class="col-md-10 col-6 ">
             <p class = 'float-left'>
              {{item.Name}} X {{item.Quantity}}
               </p>
           </div>
-          <div class="col-md-2 float-right">
+          <div class="col-md-2 col-6 float-right">
               <p class = 'float-right'>
   
               {{item.Price * item.Quantity | currency: "USD":true}}
@@ -35,16 +35,16 @@ padding: 0px;
 
     
     <div class="row" style = 'width : 100% '>
-      <div class="col-md-10 ">
+      <div class="col-md-10 col-6 ">
 
           <div class="font-weight-bold">Total</div> 
 
       </div>
-      <div class="col-md-2 float-right">
+      <div class="col-md-2  col-6 float-right">
         
 
           
-            <div class="font-weight-bold float-right">  {{ data.total | currency: "USD":true }}</div> 
+            <div class="font-weight-bold totalAmount float-right">  {{ data.total | currency: "USD":true }}</div> 
         
       </div>
     </div>
@@ -57,9 +57,7 @@ padding: 0px;
     <button [disabled] = 'disabledButton'>
   <i class="fa fa-minus-circle icon"   (click) = 'subtractNumber()' aria-hidden="true"></i>
 </button>
-  <span style = 'font-size: 50px;
-  padding: 20px;
-'>{{number}}</span>
+  <span class = 'splitAmount'>{{number}}</span>
     <button >
   <i class="fa fa-plus-circle icon " aria-hidden="true" (click) = 'addNumber()'></i>
   </button>
@@ -81,7 +79,7 @@ padding: 0px;
          disabled />
       </div>
       <div class = 'col-md-4'>
-        <button class = 'btn btn-success chargeButton'> Charge </button>
+        <button class = 'btn btn-success chargeButton' (click) = 'charge()'> Charge </button>
       </div>
     </div>
 
