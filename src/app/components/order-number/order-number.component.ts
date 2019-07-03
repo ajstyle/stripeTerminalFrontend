@@ -27,10 +27,10 @@ export class OrderNumberComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  checkout(orderNumber): void { 
-    console.log(this.obj) ; 
+  checkout(orderNumber): void {
+    console.log(this.obj) ;
     this.orderObj.orderNumber = orderNumber.orderNo ;
-    this.orderObj.order = this.obj.name  ; 
+    this.orderObj.order = this.obj.name  ;
     this.orderObj.total = this.obj.total ;
     const dialogRef = this.dialog.open(CheckoutComponent, {
       width: '1000px',

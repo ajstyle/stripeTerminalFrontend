@@ -18,6 +18,7 @@ padding: 0px;
             <p class = 'float-left'>
              {{item.Name}} X {{item.Quantity}}
               </p>
+              
           </div>
           <div class="col-md-2 col-6 float-right">
               <p class = 'float-right'>
@@ -27,6 +28,23 @@ padding: 0px;
           </div>
         </div>
       </mat-list-item>  
+      <mat-list-item> 
+        <div class="row" style = 'width : 100% '>
+          <div class="col-md-10 col-6 ">
+            <p class = 'float-left'>
+            Tax
+              </p>
+              
+          </div>
+          <div class="col-md-2 col-6 float-right">
+              <p class = 'float-right'>
+                {{taxValue | currency: "USD":true}}
+
+              </p>
+           
+          </div>
+        </div>
+      </mat-list-item>
       <mat-divider></mat-divider>
      
     </mat-list>
@@ -78,7 +96,7 @@ padding: 0px;
           <input  type="text" class = 'form-control ' placeholder="Test Price" [ngModel]="splitRow[0].total | currency: 'USD':true"  
          disabled />
       </div>
-      <div class = 'col-md-4'>
+      <div class = 'col-md-4'>  
         <button class = 'btn btn-success chargeButton' (click) = 'charge()'> Charge </button>
       </div>
     </div>

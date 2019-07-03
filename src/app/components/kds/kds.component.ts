@@ -10,7 +10,7 @@ export class KdsComponent implements OnInit {
 
   constructor(private pos: PosService) { }
   kdsArray: KDS[] = [] ;
-
+  
   ngOnInit() {
 
       this.pos.currentKds.subscribe(res => {

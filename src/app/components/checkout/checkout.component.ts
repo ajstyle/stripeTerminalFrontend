@@ -3,6 +3,8 @@ import { MAT_DIALOG_DATA , MatDialogRef } from '@angular/material';
 import {KDS} from '../../item' ;
 import {PosService} from '../../services/pos.service' ;
 import {Router} from '@angular/router' ;
+
+const taxRate = 8.3125 ;
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
@@ -13,9 +15,11 @@ export class CheckoutComponent implements OnInit {
  selectedPayment: string ;
  number =  1 ;
  disabledButton = true ;
+ taxValue ;
+
  index = [1] ;
  orderList: KDS[] = [];
- splitRow = [{id :  1  , total : this.data.total }] ;
+ splitRow = [] ;
   constructor(@Inject(MAT_DIALOG_DATA) public data ,
               public dialogRef: MatDialogRef<CheckoutComponent>,
               public pos: PosService,
@@ -28,8 +32,10 @@ this.selectedPayment = event.value ;
   }
   ngOnInit() {
     // console.log('orderListDataBefore===', this.orderList) ;
-
-     this.pos.currentKds.subscribe(orderData => { this.orderList = orderData  ;
+      this.taxValue = (this.data.total * taxRate) / 100 ;
+      this.data.total = this.data.total + this.taxValue ;
+      this.splitRow =  [{id :  1  , total : this.data.total }] ;
+      this.pos.currentKds.subscribe(orderData => { this.orderList = orderData  ;
 
      } );
 

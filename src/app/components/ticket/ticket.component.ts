@@ -5,7 +5,7 @@
   import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
   import {CheckoutComponent} from '../checkout/checkout.component' ;
   import {OrderNumberComponent} from '../order-number/order-number.component' ;
-
+  import {ResponsiveService} from '../../services/responsive.service' ;
 
   @Component({
     selector: 'app-ticket',
@@ -20,10 +20,15 @@
     cartNumItems = 0;
     ticketModifier: TicketModifier[] = [] ;
     disabledButton = true ;
-    constructor(private ticketSync: PosService, public dialog: MatDialog, private db: ApiService) { }
+    public isMobile: boolean;
+    constructor(private ticketSync: PosService, public dialog: MatDialog,
+                private db: ApiService , public responsiveService: ResponsiveService) { }
 
     // Sync with ticketSync service on init
     ngOnInit() {
+      this.onResize(event);
+      this.responsiveService.checkWidth();
+
     // this.ticketSync.currentTicket.subscribe(data => this.ticket = data);
       this.ticketSync.currentTotal.subscribe(total => this.cartTotal = total);
       this.ticketSync.currentCartNum.subscribe(num => this.cartNumItems = num);
@@ -36,7 +41,12 @@
           }
       }) ;
     }
-
+    onResize(event) {
+      this.responsiveService.checkWidth();
+      this.responsiveService.getMobileStatus().subscribe(isMobile => {
+        this.isMobile = isMobile;
+      });
+    }
     // Add item to ticket.
     addItem(item: TicketModifier) {
       // If the item already exists, add 1 to quantity
@@ -77,7 +87,8 @@
       if (this.ticketModifier[this.ticketModifier.indexOf(item)].Quantity === 1) {
         this.removeItem(item);
       } else {
-          this.ticketModifier[this.ticketModifier.indexOf(item)].Quantity = this.ticketModifier[this.ticketModifier.indexOf(item)].Quantity - 1;
+          this.ticketModifier[this.ticketModifier.indexOf(item)].Quantity =
+           this.ticketModifier[this.ticketModifier.indexOf(item)].Quantity - 1;
       }
       this.syncTicket();
       this.calculateTotal();

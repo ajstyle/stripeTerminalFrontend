@@ -15,7 +15,11 @@ import { ReactiveFormsModule , FormsModule } from '@angular/forms';
 import { KdsComponent } from './components/kds/kds.component';
 import { OrderComponent } from './components/order/order.component';
 import {OrderNumberComponent} from './components/order-number/order-number.component';
-import { ThankyouComponent } from './components/thankyou/thankyou.component'
+import { ThankyouComponent } from './components/thankyou/thankyou.component' ;
+import {ResponsiveService} from './services/responsive.service' ;
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,7 +42,7 @@ import { ThankyouComponent } from './components/thankyou/thankyou.component'
     ReactiveFormsModule,
     MDBBootstrapModule.forRoot()
   ],
-  providers: [ApiService, PosService],
+  providers: [ApiService, PosService, ResponsiveService],
   entryComponents : [ModifiersDialogComponent, CheckoutComponent, OrderComponent, OrderNumberComponent],
   bootstrap: [AppComponent]
 })
