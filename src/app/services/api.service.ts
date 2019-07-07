@@ -13,7 +13,7 @@ export class ApiService {
     const total = data.total ;
     let obj = {token , total} ;
     console.log('object-----',obj);
-    return this.http.post(`${this.url}/payme`,obj);
+    return this.http.post(`${URL}/payme`,obj);
   }
   seaFood() {
     return of(
