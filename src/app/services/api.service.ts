@@ -4,8 +4,8 @@ import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject , of} from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
-//const URL = 'https://restaurantsbackend.herokuapp.com/api'
-const URL = 'http://localhost:8000/api'
+const URL = 'https://restaurantsbackend.herokuapp.com/api'
+//const URL = 'http://localhost:8000/api'
 
 @Injectable()
 export class ApiService {
