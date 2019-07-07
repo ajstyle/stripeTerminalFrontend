@@ -70,7 +70,7 @@
           // Set item quantity back to 1 (thus when readded, quantity isn't 0)
           this.ticketModifier[this.ticketModifier.indexOf(item)].Quantity = 1;
           this.ticketModifier.splice(index, 1);
-          if(this.ticketModifier.length > 0 ) {
+          if (this.ticketModifier.length > 0 ) {
             this.disabledButton = false ;
           } else {
             this.disabledButton = true  ;

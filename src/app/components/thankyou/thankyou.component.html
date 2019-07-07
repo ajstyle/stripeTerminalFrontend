@@ -28,14 +28,14 @@
       </div>
      
       <div class="card bg-light">
-          <div class="card-body" *ngFor = 'let order of  orderArray'>
+          <div class="card-body">
 
-            <p> Order Number : <strong> {{order.orderNumber}} </strong></p>
+            <p> Order Number : <strong> {{orderNumber}} </strong></p>
             <mat-divider> </mat-divider>
             <p> Date : <strong> {{date}} </strong></p>
             <mat-divider> </mat-divider>
 
-            <p> Total : <strong> {{order.total| currency:'USD':true}} </strong></p>
+            <p> Total : <strong> {{total| currency:'USD':true}} </strong></p>
             <mat-divider> </mat-divider>
 
             <p> Payment Method : <strong> Direct Bank Transfer </strong></p>

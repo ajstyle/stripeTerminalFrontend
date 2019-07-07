@@ -2,13 +2,19 @@
 import {map} from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject , of} from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
-
-
+const URL = 'https://restaurantsbackend.herokuapp.com/api'
 
 @Injectable()
 export class ApiService {
-
+  constructor(private http: HttpClient){}
+  paymentStripe(token , data){
+    const total = data.total ;
+    let obj = {token , total} ;
+    console.log('object-----',obj);
+    return this.http.post(`${this.url}/payme`,obj);
+  }
   seaFood() {
     return of(
       [

@@ -5,6 +5,8 @@ import { TicketModifier } from '../item';
 
 @Injectable()
 export class PosService {
+  public newOrder: any;
+
 
   private ticket = TICKET ;
   private tickerModifier = TICKETModifier ;
@@ -46,9 +48,16 @@ export class PosService {
     this.ticketModifierSource.next(ticket) ;
   }
 
+  set order(order) {
+    this.newOrder = order ;
+  }
+
+  get order() {
+    return this.newOrder ; 
+  }
+
   updateKDS(orders: KDS[]) {
     console.log('OrderService,' , orders) ;
-    
     this.kdsModifierSource.next(orders) ;
   }
 }

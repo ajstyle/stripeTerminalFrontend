@@ -17,6 +17,9 @@ import { OrderComponent } from './components/order/order.component';
 import {OrderNumberComponent} from './components/order-number/order-number.component';
 import { ThankyouComponent } from './components/thankyou/thankyou.component' ;
 import {ResponsiveService} from './services/responsive.service' ;
+import { NgxStripeModule } from 'ngx-stripe';
+import { StripeComponent } from './components/stripe/stripe.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -31,11 +34,14 @@ import {ResponsiveService} from './services/responsive.service' ;
     KdsComponent,
     OrderComponent,
     OrderNumberComponent,
-    ThankyouComponent
+    ThankyouComponent,
+    StripeComponent
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     AppRoutingModule,
+    NgxStripeModule.forRoot('pk_test_pru2udw1VbXKljMOr3Sf3K0C00w8tu958D'),
     MaterialModule,
     BrowserAnimationsModule,
     FormsModule,

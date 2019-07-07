@@ -10,15 +10,20 @@ export class ThankyouComponent implements OnInit {
   orderArray = [] ;
   constructor(public pos: PosService) { }
   date: any ;
+  orderList: any ;
+  orderNumber: number ;
+  total: number ;
   ngOnInit() {
    const today = new Date();
 
    this.date = today.getDate() +  '-' + (today.getMonth() + 1) + '-' + today.getFullYear() ;
 
-   this.pos.currentKds.subscribe(res => {
-      this.orderArray = res ;
-      console.log('kds====' , this.orderArray) ;
-    });
+   this.orderList  = this.pos.order ;
+   console.log(this.orderList) ;
+   if (this.orderList) {
+    this.orderNumber = this.orderList.orderNumber ;
+    this.total = this.orderList.total ;
+    }
   }
 
 }
