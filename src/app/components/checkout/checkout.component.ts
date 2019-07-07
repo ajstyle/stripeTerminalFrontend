@@ -68,10 +68,35 @@ this.selectedPayment = event.value ;
         this.apiService.paymentStripe(token.id , this.data).subscribe(res=>{
           this.paymentResponse = res ;
           console.log(this.paymentResponse);
-          if(this.paymentResponse.success) {
-            Swal.fire({title : 'payment Success'}) ;
-          }
-        });
+          if (this.paymentResponse.success) {
+            Swal.fire({
+              title: 'Payment Done',
+              type: 'success',
+           
+            }).then((result) => {
+              console.log(result);
+              this.charge() ;
+
+              
+              }
+            ) ;
+        }
+        }, (err =>{
+          console.log('error=====',err.error);
+          Swal.fire({
+            text: err.error.message ,
+            type: 'error',
+          }).then((result) => {
+            if (result.value) {
+              
+              this.dialogRef.close();
+              this.router.navigate(['/']);
+            // For more information about handling dismissals please visit
+            // https://sweetalert2.github.io/#handling-dismissals
+            }
+            }
+          ) ;
+        }));
         // You can access the token ID with `token.id`.
         // Get the token ID to your server-side code for use.
         console.log(token);
@@ -80,7 +105,7 @@ this.selectedPayment = event.value ;
     console.log('===total' , this.data) ;
     handler.open({
       name: this.data.name ,
-      description: '2 widgets',
+      description: 'Checkout',
       amount : splitAmount*100 
     });
 
@@ -99,7 +124,7 @@ this.selectedPayment = event.value ;
     console.log('posOrder===',this.pos.order);
     this.dialogRef.close();
 
-    this.router.navigate(['stripe']) ;
+    this.router.navigate(['thankYou']) ;
   }
 
   subtractNumber() {

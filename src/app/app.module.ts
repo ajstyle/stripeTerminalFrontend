@@ -39,7 +39,7 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
-    NgxStripeModule.forRoot('pk_test_pru2udw1VbXKljMOr3Sf3K0C00w8tu958D'),
+    NgxStripeModule.forRoot('pk_test_cJM72ms6XPywuWC7mxBv7Lmm002j9ksdey'),
     MaterialModule,
     BrowserAnimationsModule,
     FormsModule,
