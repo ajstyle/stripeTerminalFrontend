@@ -18,7 +18,6 @@ import {OrderNumberComponent} from './components/order-number/order-number.compo
 import { ThankyouComponent } from './components/thankyou/thankyou.component' ;
 import {ResponsiveService} from './services/responsive.service' ;
 import { NgxStripeModule } from 'ngx-stripe';
-import { StripeComponent } from './components/stripe/stripe.component';
 import { HttpClientModule } from '@angular/common/http';
 
 
@@ -35,7 +34,6 @@ import { HttpClientModule } from '@angular/common/http';
     OrderComponent,
     OrderNumberComponent,
     ThankyouComponent,
-    StripeComponent
   ],
   imports: [
     HttpClientModule,
