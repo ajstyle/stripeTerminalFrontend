@@ -19,10 +19,14 @@ export class CheckoutComponent implements OnInit {
  number =  1 ;
  disabledButton = true ;
  taxValue ;
+ showCashButton  = true  ;
+ showCardButton = false ;
+ loading: string ;
 paymentResponse: any ;
  index = [1] ;
  orderList: KDS[] = [];
  splitRow = [] ;
+ showSpinner = false ;
   constructor(@Inject(MAT_DIALOG_DATA) public data ,
               public dialogRef: MatDialogRef<CheckoutComponent>,
               public pos: PosService,
@@ -58,42 +62,48 @@ this.selectedPayment = event.value ;
   });
   }
 
+  openThankYou() {
+    this.router.navigate(['thankYou']);
+  }
   openCheckout(splitAmount) {
+    this.showSpinner = true ; 
 
-    const handler = (<any>window).StripeCheckout.configure({
+    const handler = (window as any).StripeCheckout.configure({
       key: 'pk_test_cJM72ms6XPywuWC7mxBv7Lmm002j9ksdey',
       locale: 'auto',
       currency : 'USD',
       token:  (token: any) => {
-        this.apiService.paymentStripe(token.id , this.data).subscribe(res=>{
+        this.apiService.paymentStripe(token.id , this.data).subscribe(res => {
           this.paymentResponse = res ;
           console.log(this.paymentResponse);
           if (this.paymentResponse.success) {
+
             Swal.fire({
               title: 'Payment Done',
               type: 'success',
-           
-            }).then((result) => {
-              console.log(result);
-              this.charge() ;
 
-              
+            }).then((result) => {
+              this.showSpinner = false ; 
+
+              this.index.splice((this.index.length - 1 ) ,   1) ;
+              console.log('length====' , this.index.length) ;
+              if (this.index.length === 0 ) {
+                  this.charge() ;
+                  }
+
               }
             ) ;
         }
-        }, (err =>{
-          console.log('error=====',err.error);
+        }, (err => {
+          console.log('error=====', err.error);
           Swal.fire({
             text: err.error.message ,
             type: 'error',
           }).then((result) => {
             if (result.value) {
-              
               this.dialogRef.close();
               this.router.navigate(['/']);
-            // For more information about handling dismissals please visit
-            // https://sweetalert2.github.io/#handling-dismissals
-            }
+           }
             }
           ) ;
         }));
@@ -106,9 +116,21 @@ this.selectedPayment = event.value ;
     handler.open({
       name: this.data.name ,
       description: 'Checkout',
-      amount : splitAmount*100 
+      amount : splitAmount * 100
     });
 
+  }
+
+  paymentChange(event) {
+    if (event.target.value === 'Cash') {
+      this.showCashButton = true ;
+      this.showCardButton = false ;
+
+    } else {
+      this.showCardButton = true ;
+      this.showCashButton = false ;
+
+    }
   }
 
   charge() {
@@ -117,11 +139,11 @@ this.selectedPayment = event.value ;
     this.orderList.push(this.data) ;
     this.pos.updateKDS(this.orderList) ;
 
-    console.log(this.pos.order) ; 
+    console.log(this.pos.order) ;
     console.log('payloadd====', this.orderList) ;
 
     this.pos.order = this.data ;
-    console.log('posOrder===',this.pos.order);
+    console.log('posOrder===', this.pos.order);
     this.dialogRef.close();
 
     this.router.navigate(['thankYou']) ;

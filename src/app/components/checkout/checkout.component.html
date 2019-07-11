@@ -1,7 +1,10 @@
+<div *ngIf = 'showSpinner'>
+<mat-progress-bar mode="buffer"></mat-progress-bar>
+</div>
 <div class="float-right close ">
   <i class="fa fa-times-circle" (click)="close()" aria-hidden="true"></i>
 </div>
-<div class="container" style = '    margin: 0px;
+<div class="container" class = 'mt-4' style = '    margin: 0px;
 height: 98%;
 padding: 0px;
  '>
@@ -28,26 +31,28 @@ padding: 0px;
           </div>
         </div>
       </mat-list-item>  
-      <mat-list-item> 
-        <div class="row" style = 'width : 100% '>
-          <div class="col-md-10 col-6 ">
-            <p class = 'float-left'>
-            Tax
-              </p>
-              
-          </div>
-          <div class="col-md-2 col-6 float-right">
-              <p class = 'float-right'>
-                {{taxValue | currency: "USD":true}}
-
-              </p>
-           
-          </div>
-        </div>
-      </mat-list-item>
-      <mat-divider></mat-divider>
+    
      
     </mat-list>
+
+    <mat-divider></mat-divider>
+    <mat-list-item> 
+      <div class="row" style = 'width : 100% '>
+        <div class="col-md-10 col-6 ">
+          <p class = 'float-left tax'>
+          Tax
+            </p>
+            
+        </div>
+        <div class="col-md-2 col-6 float-right">
+            <p class = 'float-right tax-amount'>
+              {{taxValue | currency: "USD":true}}
+
+            </p>
+         
+        </div>
+      </div>
+    </mat-list-item>
     <mat-divider></mat-divider>
     <div class="container">
 
@@ -60,8 +65,6 @@ padding: 0px;
       </div>
       <div class="col-md-2  col-6 float-right">
         
-
-          
             <div class="font-weight-bold totalAmount float-right">  {{ data.total | currency: "USD":true }}</div> 
         
       </div>
@@ -87,7 +90,7 @@ padding: 0px;
       <mat-divider></mat-divider>
 
       <div class = 'col-md-4' >
-          <select class="form-control" >
+          <select class="form-control" (change) = 'paymentChange($event)' >
               <option *ngFor = 'let payment of paymentOption'>{{payment}}</option>
               
             </select>
@@ -97,7 +100,10 @@ padding: 0px;
          disabled />
       </div>
       <div class = 'col-md-4'>  
-        <button class = 'btn btn-success chargeButton' (click) = 'openCheckout(splitRow[0].total)'> Charge </button>
+      
+          <button class = 'btn btn-success chargeButton' *ngIf = 'showCardButton' (click) = 'openCheckout(splitRow[0].total)'> Charge </button>
+          <button class = 'btn btn-success chargeButton'  *ngIf = 'showCashButton' (click) = 'charge()'> Charge </button>
+
       </div>
     </div>
 

@@ -11,6 +11,19 @@ padding : 0px !important ;
     
 
 }
+.tax{
+  margin-left: 0px;
+  position: relative;
+  left: 18px;
+}
+
+.tax-amount {
+  position: relative;
+  right: 17px;
+}
+
+
+
 
 @media(max-width:800px){
   .float-left {
@@ -19,6 +32,11 @@ padding : 0px !important ;
   }
   .float-right {
     font-size: 12px;
+  }
+  .tax{
+    margin-left: 0px;
+    position: relative;
+    left: 18px;
   }
 
   .totalAmount{

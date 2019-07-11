@@ -12,12 +12,16 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
-  imports: [MatButtonModule, MatFormFieldModule, MatInputModule , MatListModule, MatExpansionModule, MatDividerModule, MatCheckboxModule,
-     MatToolbarModule, MatCardModule, MatIconModule, MatDialogModule, MatTabsModule, MatTooltipModule, MatRadioModule],
-  exports: [MatButtonModule, MatListModule, MatFormFieldModule, MatInputModule, MatExpansionModule, MatDividerModule, MatCheckboxModule,
-    MatToolbarModule, MatCardModule, MatIconModule, MatDialogModule, MatTabsModule, MatTooltipModule, MatRadioModule],
+  imports: [MatButtonModule, MatFormFieldModule, MatProgressSpinnerModule , MatInputModule ,
+             MatListModule, MatExpansionModule, MatDividerModule, MatCheckboxModule,MatProgressBarModule,
+            MatToolbarModule, MatCardModule, MatIconModule, MatDialogModule, MatTabsModule, MatTooltipModule, MatRadioModule],
+  exports: [MatButtonModule, MatListModule, MatProgressSpinnerModule, MatFormFieldModule, MatInputModule, 
+    MatExpansionModule, MatDividerModule, MatCheckboxModule, MatToolbarModule, MatProgressBarModule , MatCardModule,
+    MatIconModule, MatDialogModule, MatTabsModule, MatTooltipModule, MatRadioModule],
 })
 export class MaterialModule { }
