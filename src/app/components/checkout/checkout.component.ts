@@ -62,9 +62,6 @@ this.selectedPayment = event.value ;
   });
   }
 
-  openThankYou() {
-    this.router.navigate(['thankYou']);
-  }
   openCheckout(splitAmount) {
     this.showSpinner = true ; 
 
@@ -147,6 +144,24 @@ this.selectedPayment = event.value ;
     this.dialogRef.close();
 
     this.router.navigate(['thankYou']) ;
+  }
+
+  cashCharge() {
+    console.log(this.pos.order) ;
+
+    this.orderList.push(this.data) ;
+    this.pos.updateKDS(this.orderList) ;
+
+
+    this.pos.order = this.data ;
+
+    this.index.splice((this.index.length - 1 ) ,   1) ;
+    console.log('length====' , this.index.length) ;
+    if (this.index.length === 0 ) {
+      this.router.navigate(['thankYou']) ;
+      this.dialogRef.close();
+
+    }
   }
 
   subtractNumber() {
