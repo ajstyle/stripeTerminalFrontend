@@ -19,9 +19,11 @@ import { ThankyouComponent } from './components/thankyou/thankyou.component' ;
 import {ResponsiveService} from './services/responsive.service' ;
 import { NgxStripeModule } from 'ngx-stripe';
 import { HttpClientModule } from '@angular/common/http';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { environment } from '../environments/environment';
 
-
-
+import {FirebaseService} from './services/firebase.service' ;
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,6 +38,8 @@ import { HttpClientModule } from '@angular/common/http';
     ThankyouComponent,
   ],
   imports: [
+    AngularFireModule.initializeApp(environment.firebase, 'Taqueria Chavez' ),
+ 	  AngularFirestoreModule,
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
@@ -46,7 +50,7 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     MDBBootstrapModule.forRoot()
   ],
-  providers: [ApiService, PosService, ResponsiveService],
+  providers: [ApiService, PosService, ResponsiveService, FirebaseService],
   entryComponents : [ModifiersDialogComponent, CheckoutComponent, OrderComponent, OrderNumberComponent],
   bootstrap: [AppComponent]
 })
