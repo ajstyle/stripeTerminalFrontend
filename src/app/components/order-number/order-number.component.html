@@ -9,9 +9,17 @@
 
           </div>
       <div class="row mt-3">
-          <div class="col-md-12">
-              <input type = 'text' name = 'orderNo' class = 'form-control'  required ngModel>
-          </div>
+        <div class="col-md-12">
+          <div class="form-group">
+            <label for="orderNo">Order No</label>
+            <input type="text" class="form-control" name = 'orderNo'  pattern="[0-9]*" ngModel  required />
+            <div *ngIf="order.submitted && order.invalid" class="invalid-feedback">
+                <div *ngIf="orderNo.errors.pattern">First Name is required</div>
+            </div>
+        </div>
+        </div>
+         
+      
       </div>
   </div>
 

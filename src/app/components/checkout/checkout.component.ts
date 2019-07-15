@@ -4,7 +4,7 @@ import {KDS} from '../../item' ;
 import {PosService} from '../../services/pos.service' ;
 import {ApiService} from '../../services/api.service' ;
 import Swal from 'sweetalert2';
-
+import {FirebaseService} from '../../services/firebase.service' ; 
 import {Router} from '@angular/router' ;
 
 const taxRate = 8.3125 ;
@@ -31,7 +31,8 @@ paymentResponse: any ;
               public dialogRef: MatDialogRef<CheckoutComponent>,
               public pos: PosService,
               public router: Router,
-              public apiService: ApiService
+              public apiService: ApiService ,
+              public firebase: FirebaseService
 ) {
   }
   selectedPaymentOption(event) {
@@ -132,6 +133,7 @@ this.selectedPayment = event.value ;
 
   charge() {
     console.log(this.pos.order) ;
+    this.firebase.createKDSOrder(this.data).then( x => {console.log('x====', x); }  );
 
     this.orderList.push(this.data) ;
     this.pos.updateKDS(this.orderList) ;
@@ -148,7 +150,7 @@ this.selectedPayment = event.value ;
 
   cashCharge() {
     console.log(this.pos.order) ;
-
+    this.firebase.createKDSOrder(this.data).then( x => {console.log('x====', x); }  );
     this.orderList.push(this.data) ;
     this.pos.updateKDS(this.orderList) ;
 

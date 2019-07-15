@@ -63,11 +63,16 @@ export class FirebaseService {
   }
 
   createKDSOrder(value) {
+    console.log('value=====', value) ;
     return this.db.collection('KDS').add({
-      order: value
+      orderInfo: value
     });
   }
 
+  getKDSOrder() {
+    return this.db.collection('KDS').snapshotChanges();
+
+  }
   createOrderHistory(value) {
     return this.db.collection('orderHistory').add({
       orderNumber: value.orderNumber,

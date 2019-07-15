@@ -1,19 +1,23 @@
 
 
- 
+ <mat-progress-bar *ngIf = 'kdsArray.length == 0 ' mode="indeterminate"></mat-progress-bar>
+
 <div class="container">
 
     <h2 class = 'text-center p-4'>Kitchen Display System (KDS)</h2>
+   
     <div class="row ">
-    <div class="col-md-4"  *ngFor = 'let kds of kdsArray'>
+       
+
+    <div class="col-md-4 mt-4"  *ngFor = 'let kds of kdsArray'>
       <div class="card " >
   
-     <span class = 'text-center orderHeading'>  Order No :  {{kds.orderNumber}} </span>
+     <span class = 'text-center orderHeading'>  Order No :  {{kds.orderInfo.orderNumber}} </span>
   
        <mat-divider>  </mat-divider>
   
         <div class="card-body"  >
-          <div   *ngFor = 'let order of kds.order' class = 'mt-2'>
+          <div   *ngFor = 'let order of kds.orderInfo.order' class = 'mt-2'>
             <div class="row">
 
             
