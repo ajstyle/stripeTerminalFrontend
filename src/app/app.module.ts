@@ -38,10 +38,14 @@ import {FirebaseService} from './services/firebase.service' ;
     ThankyouComponent,
   ],
   imports: [
-    AngularFireModule.initializeApp(environment.firebase, 'Taqueria Chavez' ),
- 	  AngularFirestoreModule,
+   
+    
     HttpClientModule,
     BrowserModule,
+    
+    AngularFireModule.initializeApp(environment.firebase, 'Taqueria Chavez' ),
+ 	  AngularFirestoreModule,
+ 
     AppRoutingModule,
     NgxStripeModule.forRoot('pk_test_cJM72ms6XPywuWC7mxBv7Lmm002j9ksdey'),
     MaterialModule,
