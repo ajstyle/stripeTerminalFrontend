@@ -5,13 +5,17 @@ import { HttpClient } from '@angular/common/http';
 
 
 const URL = 'http://localhost:8000/api' ;
+
 @Injectable()
 export class StripeTerminalService {
   constructor(private http: HttpClient) {
   }
 
 
-  getStripeToken() {
-   return this.http.get(`${URL}/stripeTerminalGetToken`) ;
+  getStripeToken(data) {
+   return this.http.post(`${URL}/stripePaymentCapture`, data ) ;
   }
+
+
+
 }

@@ -183,30 +183,23 @@ this.selectedPayment = event.value ;
     console.log(terminal) ;
 
     discoverReaders(terminal) ;
+
+
+
+
+
+
+
+    // terminal.collectPaymentMethod(clientSecret).then(function(result) {
+    //   if (result.error) {
+    //     // Placeholder for handling result.error
+    //   } else {
+    //     // Placeholder for processing result.paymentIntent
+    //   }
+    // });
   }
 
 
-    connectReaderHandler(terminal) {
-    const config = {simulated: true};
-    terminal.discoverReaders(config).then((discoverResult) => {
-      if (discoverResult.error) {
-        console.log('Failed to discover: ', discoverResult.error);
-      } else if (discoverResult.discoveredReaders.length === 0) {
-        console.log('No available readers.');
-      } else {
-        // Just select the first reader here.
-        const selectedReader = discoverResult.discoveredReaders[0];
-
-        terminal.connectReader(selectedReader).then((connectResult)  => {
-          if (connectResult.error) {
-            console.log('Failed to connect: ', connectResult.error);
-          } else {
-            console.log('Connected to reader: ', connectResult.reader.label);
-          }
-        });
-      }
-    });
-  }
 
     subtractNumber() {
     this.index.splice((this.index.length - 1 ) ,   1) ;
@@ -238,6 +231,13 @@ function unexpectedDisconnect() {
     console.log('Error') ;
   }
 
+function getPaymentIntentSecret() {
+    // Your backend should call /v1/terminal/connection_tokens and return the JSON response from Stripe
+  return   fetch(' https://restaurantsbackend.herokuapp.com/api/stripePaymentIntent', { method: 'POST' });
+
+  }
+
+
 async function discoverReaders(terminal) {
     const config = {simulated: false};
     const discoverResult = await terminal.discoverReaders(config);
@@ -260,6 +260,34 @@ async function connectReader(discoverResult , terminal) {
       console.log('Failed to connect:', connectResult.error);
     } else {
       console.log('Connected to reader:', connectResult.reader.label);
+
+      getPaymentIntentSecret().then(response => response.json())
+      .then(data => {
+
+        const clientSecret = data.intent.client_secret ;
+
+        terminal.collectPaymentMethod(clientSecret).then((result) => {
+          if (result.error) {
+            // Placeholder for handling result.error
+            console.log(result.error);
+
+          } else {
+            terminal.processPayment(result.paymentIntent).then((result1) => {
+              if (result1.error) {
+                // Placeholder for handling result.error
+              } else if (result1.paymentIntent) {
+                // Placeholder for notifying your backend to capture result.paymentIntent.id
+              console.log('resultNotify====', result1.paymentIntent.id);
+              fetch(`http://localhost:8000/api/stripePaymentCapture/${result1.paymentIntent.id}`, { method: 'GET'} )
+              .then(response => response.json())
+              .then(paymentData => console.log(paymentData) );
+            }
+
+              });
+            }
+          });
+        });
     }
   }
+
 
