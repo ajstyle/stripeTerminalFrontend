@@ -22,7 +22,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
-
+import {StripeTerminalService} from './services/stripeTerminal.service' ;
 import {FirebaseService} from './services/firebase.service' ;
 @NgModule({
   declarations: [
@@ -38,23 +38,19 @@ import {FirebaseService} from './services/firebase.service' ;
     ThankyouComponent,
   ],
   imports: [
-   
-    
     HttpClientModule,
     BrowserModule,
-    
     AngularFireModule.initializeApp(environment.firebase, 'Taqueria Chavez' ),
  	  AngularFirestoreModule,
- 
     AppRoutingModule,
     NgxStripeModule.forRoot('pk_test_cJM72ms6XPywuWC7mxBv7Lmm002j9ksdey'),
     MaterialModule,
     BrowserAnimationsModule,
     FormsModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule,  
     MDBBootstrapModule.forRoot()
   ],
-  providers: [ApiService, PosService, ResponsiveService, FirebaseService],
+  providers: [ApiService, PosService, ResponsiveService, FirebaseService, StripeTerminalService],
   entryComponents : [ModifiersDialogComponent, CheckoutComponent, OrderComponent, OrderNumberComponent],
   bootstrap: [AppComponent]
 })

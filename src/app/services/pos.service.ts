@@ -13,6 +13,7 @@ export class PosService {
   private kds = KDS ;
   private ticketModifierSource = new BehaviorSubject<TicketModifier[]>(this.tickerModifier);
 
+  
   private kdsModifierSource = new BehaviorSubject<KDS[]>(this.kds);
 
   private ticketSource = new BehaviorSubject<Item[]>(this.ticket);
@@ -68,3 +69,6 @@ const TICKET: Item[] = [
 
 const TICKETModifier: TicketModifier[] = [] ;
 const KDS: KDS[] = [] ;
+
+
+
