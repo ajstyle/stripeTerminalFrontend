@@ -108,7 +108,7 @@ this.selectedPayment = event.value ;
 
   }
   async discoverReaders(terminal) {
-    const config = {simulated: true};
+    const config = {simulated: false};
     const discoverResult = await terminal.discoverReaders(config);
     if (discoverResult.error) {
       this.disable = false ;
