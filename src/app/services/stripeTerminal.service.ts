@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import {map} from 'rxjs/operators';
 
 const URL = 'https://restaurantsbackend.herokuapp.com/api' ;
+const URL1 = 'http://localhost:8000/api' ;
 
 @Injectable()
 export class StripeTerminalService {

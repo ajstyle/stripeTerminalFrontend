@@ -143,7 +143,8 @@ this.selectedPayment = event.value ;
     } else {
       this.loadingText = 'Reader Connected';
       console.log('Connected to reader:', connectResult.reader.label);
-      const data = {} ;
+      const data = {total : this.data.total} ;
+      console.log(data);
       this.stripeTerminalService.getPaymentIntentSecret(data).subscribe(res => {
         this.loadingText = 'Waiting for a card...' ;
         this.paymentIntent = res ;
